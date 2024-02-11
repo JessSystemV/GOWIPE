@@ -1,0 +1,13 @@
+#!/bin/bash
+
+read -p "ARE YOU SURE?" confirmation
+
+if [[ $confirmation == [yY] ]]; then
+    git checkout --orphan new_branch
+    git add -A
+    git commit -m "Initial commit"
+    git branch -M main
+    git push -f origin main
+    git gc --aggressive --prune=all
+    echo "History has been rewritten."
+fi
